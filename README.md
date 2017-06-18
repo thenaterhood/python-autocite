@@ -28,6 +28,8 @@ Run `autocite --help` to see the help text.
 
 Protip: Missing information will be filled in with "[[[field name]]]" which should make it easy to search for.
 
+Currently only supports APA, but is extensible for other formats.
+
 Using in other programs:
 
 `from python_autocite.lib import *`
