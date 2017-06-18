@@ -49,6 +49,10 @@ Cite a single URL:
 
 `autocite --url http://arstechnica.com/business/2012/12/report-data-caps-just-a-cash-cow-for-internet-providers/`
 
+This will print to stdout:
+
+`Anderson, N. (2012, December 18). Report: data caps just a “cash cow” for Internet providers. Retrieved June 18, 2017, from http://arstechnica.com/business/2012/12/report-data-caps-just-a-cash-cow-for-internet-providers/`
+
 Cite a list of URLs (newline separated), and save the citations to a file called citations.txt
 
 `autocite --from-file urllist.txt --to-text citations.txt`
