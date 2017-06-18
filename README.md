@@ -42,6 +42,17 @@ creating citation formatters
 * `python_autocite.lib.formatter.APAFormatter` - formats a Citation
 into an APA citation
 
+Examples
+-----------
+
+Cite a single URL:
+
+`autocite --url http://arstechnica.com/business/2012/12/report-data-caps-just-a-cash-cow-for-internet-providers/`
+
+Cite a list of URLs (newline separated), and save the citations to a file called citations.txt
+
+`autocite --from-file urllist.txt --to-text citations.txt`
+
 Disclaimers
 -----------
 This software is not perfect and will make mistakes. Check that
