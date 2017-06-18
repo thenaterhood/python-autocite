@@ -25,6 +25,8 @@ Command line usage:
 
 Run `autocite --help` to see the help text.
 
+Protip: Missing information will be filled in with "[[[field name]]]" which should make it easy to search for.
+
 Using in other programs:
 
 `from python_autocite.lib import *`
@@ -38,3 +40,10 @@ with intelligent setters
 creating citation formatters
 * `python_autocite.lib.formatter.APAFormatter` - formats a Citation
 into an APA citation
+
+Disclaimers
+-----------
+This software is not perfect and will make mistakes. Check that
+your citations are correct before using them for any important
+purpose.
+
