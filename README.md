@@ -16,6 +16,7 @@ Requirements:
 * BeautifulSoup4
 * Requests
 * Dateutil
+* Python 3
 
 Run `python setup.py install` to install.
 
