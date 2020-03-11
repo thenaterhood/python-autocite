@@ -94,13 +94,15 @@ def main():
                 f.write("\n\n")
     else:
         for citation in formatted_citations:
-            if("[[[AUTHORS]]]" in citation): #可以优化速度
-                citation.replace("[[[AUTHORS]]]",input("Please enter author(s) manually: "))
-            if("[[[PUBLICATION DATE]]]" in citation): #可以优化速度
-                citation.replace("[[[PUBLICATION DATE]]]",input("Please enter publication date manually: "))
-            if("[[[AUTHORS]]]" in citation): #可以优化速度
-                citation.replace("[[[TITLE]]]",input("Please enter the title manually: "))
-            print(citation)
+            tmp=str(citation)
+            # print(type(tmp))
+            if("[[[AUTHORS]]]" in tmp): #可以优化速度
+                tmp=tmp.replace("[[[AUTHORS]]]",input("Please enter author(s) manually: "))
+            if("[[[PUBLICATION DATE]]]" in tmp): #可以优化速度
+                tmp=tmp.replace("[[[PUBLICATION DATE]]]",input("Please enter publication date manually: "))
+            if("[[[TITLE]]]" in tmp): #可以优化速度 yong tmp 也不行
+                tmp=tmp.replace("[[[TITLE]]]",input("Please enter the title manually: "))#Forget the "=" python
+            print(tmp)#missing
 
 if __name__ == "__main__":
     main()
