@@ -97,7 +97,7 @@ def main():
             tmp=str(citation)
             if("[[[AUTHORS]]]" in tmp):
                 tmp=tmp.replace("[[[AUTHORS]]]",input("Please enter author(s) manually: "))
-            if("[[[PUBLICATION DATE]]]" in tmp): #可以优化速度
+            if("[[[PUBLICATION DATE]]]" in tmp):
                 tmp=tmp.replace("[[[PUBLICATION DATE]]]",input("Please enter publication date manually: "))
             if("[[[TITLE]]]" in tmp): #可以优化速度 yong tmp 也不行
                 tmp=tmp.replace("[[[TITLE]]]",input("Please enter the title manually: "))#Forget the "=" python
