@@ -101,7 +101,7 @@ def main():
                 tmp=tmp.replace("[[[PUBLICATION DATE]]]",input("Please enter publication date manually: "))
             if("[[[TITLE]]]" in tmp): #可以优化速度 yong tmp 也不行
                 tmp=tmp.replace("[[[TITLE]]]",input("Please enter the title manually: "))
-            print(tmp)#missing
+            print(tmp)
 
 if __name__ == "__main__":
     main()
