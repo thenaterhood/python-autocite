@@ -96,7 +96,7 @@ def main():
         for citation in formatted_citations:
             tmp=str(citation)
             # print(type(tmp))
-            if("[[[AUTHORS]]]" in tmp): #可以优化速度
+            if("[[[AUTHORS]]]" in tmp):
                 tmp=tmp.replace("[[[AUTHORS]]]",input("Please enter author(s) manually: "))
             if("[[[PUBLICATION DATE]]]" in tmp): #可以优化速度
                 tmp=tmp.replace("[[[PUBLICATION DATE]]]",input("Please enter publication date manually: "))
