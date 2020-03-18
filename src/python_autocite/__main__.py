@@ -94,7 +94,14 @@ def main():
                 f.write("\n\n")
     else:
         for citation in formatted_citations:
-            print(citation)
+            tmp=str(citation)
+            if("[[[AUTHORS]]]" in tmp):
+                tmp=tmp.replace("[[[AUTHORS]]]",input("Please enter author(s) manually: "))
+            if("[[[PUBLICATION DATE]]]" in tmp):
+                tmp=tmp.replace("[[[PUBLICATION DATE]]]",input("Please enter publication date manually: "))
+            if("[[[TITLE]]]" in tmp):
+                tmp=tmp.replace("[[[TITLE]]]",input("Please enter the title manually: "))
+            print(tmp)
 
 if __name__ == "__main__":
     main()
