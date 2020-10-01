@@ -81,8 +81,11 @@ def main():
                     citations.append(soup_to_citation(line, soup))
                 else:
                     print("Unable to load " + str(args.url), file=sys.stderr)
+            print()
+            # Start a new line, split with dot(s)
 
     formatted_citations = []
+
     for citation in citations:
         formatted_citations.append(formatter.format(citation))
 
@@ -93,15 +96,20 @@ def main():
                 f.write(citation)
                 f.write("\n\n")
     else:
+        myindex=0
         for citation in formatted_citations:
             tmp=str(citation)
+            #print("For URL: "+str(citation.url))
             if("[[[AUTHORS]]]" in tmp):
+                print("For URL: "+str(citations[myindex].url))
                 tmp=tmp.replace("[[[AUTHORS]]]",input("Please enter author(s) manually: "))
             if("[[[PUBLICATION DATE]]]" in tmp):
+                print("For URL: "+str(citations[myindex].url))
                 tmp=tmp.replace("[[[PUBLICATION DATE]]]",input("Please enter publication date manually: "))
             if("[[[TITLE]]]" in tmp):
+                print("For URL: "+str(citations[myindex].url))
                 tmp=tmp.replace("[[[TITLE]]]",input("Please enter the title manually: "))
             print(tmp)
-
+            myindex+=1
 if __name__ == "__main__":
     main()
