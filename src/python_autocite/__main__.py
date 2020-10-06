@@ -89,7 +89,7 @@ def main():
     for citation in citations:
         formatted_citations.append(formatter.format(citation))
 
-    formatted_citations.sort()
+    #formatted_citations.sort()
     if (args.to_text is not False):
         with open(args.to_text, "w") as f:
             for citation in formatted_citations:
