@@ -17,6 +17,7 @@ Requirements:
 * Requests
 * Dateutil
 * Python 3
+* (optional) pageres - for capturing screenshots
 
 Run `python setup.py install` to install.
 
@@ -58,6 +59,10 @@ This will print to stdout:
 Cite a list of URLs (newline separated), and save the citations to a file called citations.txt
 
 `autocite --from-file urllist.txt --to-text citations.txt`
+
+Optionally, you can add the `--capture` flag to capture screenshots of websites. This will not work for all
+websites, and may increase the time to generate citations significantly. Each capture will be stored in the current
+directory.
 
 Disclaimers
 -----------

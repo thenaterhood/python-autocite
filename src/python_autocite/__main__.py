@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from python_autocite.lib.citation import Citation
 from python_autocite.lib.formatter import APAFormatter
 from python_autocite.lib.datafinder import Datafinder
+from python_autocite.lib.capture import PageCapture
 import datetime
 import sys
 import argparse
@@ -55,6 +56,14 @@ def main():
             help="A file to write citations to. If not specified, citations will be written to stdout."
             )
 
+    parser.add_argument(
+            '--capture',
+            required=False,
+            default=False,
+            action="store_true",
+            help="Capture a screenshot of the website using pageres. Requires pageres to be installed. This does not work with all websites."
+            )
+
     args = parser.parse_args()
     if (len(sys.argv) < 2):
         parser.print_help()
@@ -68,6 +77,9 @@ def main():
         soup = url_to_soup(args.url)
         if (soup is not None):
             citations.append(soup_to_citation(args.url, soup))
+            if args.capture is not False:
+                capture = PageCapture(args.url)
+                capture.capture()
         else:
             print("Unable to load " + str(args.url), file=sys.stderr)
 
@@ -79,6 +91,9 @@ def main():
                 soup = url_to_soup(line)
                 if (soup is not None):
                     citations.append(soup_to_citation(line, soup))
+                    if args.capture is not False:
+                        capture = PageCapture(args.url)
+                        capture.capture()
                 else:
                     print("Unable to load " + str(args.url), file=sys.stderr)
 
