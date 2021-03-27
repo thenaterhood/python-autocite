@@ -76,9 +76,10 @@ def main():
     if (args.url is not False):
         soup = url_to_soup(args.url)
         if (soup is not None):
-            citations.append(soup_to_citation(args.url, soup))
+            citation = soup_to_citation(args.url, soup)
+            citations.append(citation)
             if args.capture is not False:
-                capture = PageCapture(args.url)
+                capture = PageCapture(citation)
                 capture.capture()
         else:
             print("Unable to load " + str(args.url), file=sys.stderr)
@@ -90,9 +91,10 @@ def main():
                 sys.stderr.flush()
                 soup = url_to_soup(line)
                 if (soup is not None):
-                    citations.append(soup_to_citation(line, soup))
+                    citation = soup_to_citation(line, soup)
+                    citations.append(citation)
                     if args.capture is not False:
-                        capture = PageCapture(args.url)
+                        capture = PageCapture(citation)
                         capture.capture()
                 else:
                     print("Unable to load " + str(args.url), file=sys.stderr)
