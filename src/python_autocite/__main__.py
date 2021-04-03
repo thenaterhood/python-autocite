@@ -98,8 +98,10 @@ def main():
                         capture.capture()
                 else:
                     print("Unable to load " + str(args.url), file=sys.stderr)
+            print()  # Start a new line, split with dot(s)
 
     formatted_citations = []
+
     for citation in citations:
         formatted_citations.append(formatter.format(citation))
 
@@ -113,12 +115,14 @@ def main():
         for citation in formatted_citations:
             tmp=str(citation)
             if("[[[AUTHORS]]]" in tmp):
+                print("For URL: "+str(citation.url))
                 tmp=tmp.replace("[[[AUTHORS]]]",input("Please enter author(s) manually: "))
             if("[[[PUBLICATION DATE]]]" in tmp):
+                print("For URL: "+str(citation.url))
                 tmp=tmp.replace("[[[PUBLICATION DATE]]]",input("Please enter publication date manually: "))
             if("[[[TITLE]]]" in tmp):
+                print("For URL: "+str(citation.url))
                 tmp=tmp.replace("[[[TITLE]]]",input("Please enter the title manually: "))
             print(tmp)
-
 if __name__ == "__main__":
     main()
