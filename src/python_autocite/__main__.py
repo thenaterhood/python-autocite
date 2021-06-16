@@ -55,6 +55,14 @@ def main():
             help="A file to write citations to. If not specified, citations will be written to stdout."
             )
 
+    parser.add_argument(
+            '--non-interactive',
+            required=False,
+            default=False,
+            action='store_true',
+            help="Run non-interactively. autocite will not prompt for data and will leave placeholders in your citations."
+            )
+
     args = parser.parse_args()
     if (len(sys.argv) < 2):
         parser.print_help()
@@ -87,29 +95,31 @@ def main():
     formatted_citations = []
 
     for citation in citations:
-        formatted_citations.append(formatter.format(citation))
+        formatted = formatter.format(citation)
+        if not args.non_interactive:
+            if("[[[AUTHORS]]]" in formatted):
+                print("For URL: "+str(citation.url))
+                formatted=formatted.replace("[[[AUTHORS]]]",input("Please enter author(s) manually: "))
+            if("[[[PUBLICATION DATE]]]" in formatted):
+                print("For URL: "+str(citation.url))
+                formatted=formatted.replace("[[[PUBLICATION DATE]]]",input("Please enter publication date manually: "))
+            if("[[[TITLE]]]" in formatted):
+                print("For URL: "+str(citation.url))
+                formatted=formatted.replace("[[[TITLE]]]",input("Please enter the title manually: "))
+        formatted_citations.append(formatted)
 
     formatted_citations.sort()
+
     if (args.to_text is not False):
         with open(args.to_text, "w") as f:
             for citation in formatted_citations:
                 f.write(citation)
                 f.write("\n\n")
     else:
-        myindex=0
+        print("Your citations:")
+        print()
         for citation in formatted_citations:
-            tmp=str(citation)
-            #print("For URL: "+str(citation.url))
-            if("[[[AUTHORS]]]" in tmp):
-                print("For URL: "+str(citations[myindex].url))
-                tmp=tmp.replace("[[[AUTHORS]]]",input("Please enter author(s) manually: "))
-            if("[[[PUBLICATION DATE]]]" in tmp):
-                print("For URL: "+str(citations[myindex].url))
-                tmp=tmp.replace("[[[PUBLICATION DATE]]]",input("Please enter publication date manually: "))
-            if("[[[TITLE]]]" in tmp):
-                print("For URL: "+str(citations[myindex].url))
-                tmp=tmp.replace("[[[TITLE]]]",input("Please enter the title manually: "))
-            print(tmp)
-            myindex+=1
+            print(citation)
+
 if __name__ == "__main__":
     main()
