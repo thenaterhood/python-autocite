@@ -19,7 +19,7 @@ suggested = {
         }
 
 setup(name='python-autocite',
-    version='0.0.2',
+    version='0.0.3',
     description='Scrape webpages and generate citations',
     author='Nate Levesque',
     author_email='public@thenaterhood.com',
