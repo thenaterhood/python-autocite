@@ -88,7 +88,7 @@ def main():
                 if (soup is not None):
                     citations.append(soup_to_citation(line, soup))
                 else:
-                    print("Unable to load " + str(args.url), file=sys.stderr)
+                    print("Unable to load " + str(line), file=sys.stderr)
             print()
             # Start a new line, split with dot(s)
 
