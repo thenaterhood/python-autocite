@@ -3,7 +3,8 @@
 import requests
 from bs4 import BeautifulSoup
 from python_autocite.lib.citation import Citation
-from python_autocite.lib.formatter import APAFormatter
+from python_autocite.formatter.apa import APAFormatter
+from python_autocite.formatter.bibtex import BibTexFormatter
 from python_autocite.lib.datafinder import Datafinder
 from python_autocite.lib.capture import PageCapture
 import datetime
@@ -72,13 +73,27 @@ def main():
             help="Run non-interactively. autocite will not prompt for data and will leave placeholders in your citations."
             )
 
+    parser.add_argument(
+            '--format',
+            required=False,
+            default='apa',
+            help="Output citation format. 'bibtex' and 'apa' are supported. Defaults to 'apa'."
+            )
+
     args = parser.parse_args()
     if (len(sys.argv) < 2):
         parser.print_help()
         sys.exit(1)
 
 
-    formatter = APAFormatter()
+    if args.format.lower() == 'apa':
+        formatter = APAFormatter()
+    elif args.format.lower() == 'bibtex':
+        formatter = BibTexFormatter()
+    else:
+        print("Unsupported/unrecognized formatter. Run autocite --help to see supported formatters.")
+        sys.exit(1)
+
     citations = []
 
     if (args.url is not False):

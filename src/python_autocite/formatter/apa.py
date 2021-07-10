@@ -1,9 +1,5 @@
+from python_autocite.formatter import CitationFormatter
 
-
-class CitationFormatter(object):
-
-    def format(citation):
-        raise NotImplementedError("Citation format not implemeted")
 
 class APAFormatter(CitationFormatter):
 
@@ -23,7 +19,7 @@ class APAFormatter(CitationFormatter):
 
     def _get_author_format(self, authors):
         if (len(authors) == 0):
-            return "[[[AUTHORS]]]"
+            return self.AUTHOR_UNKNOWN
         elif (len(authors) == 1):
             return "%s"
         elif (len(authors) == 2):
@@ -44,7 +40,7 @@ class APAFormatter(CitationFormatter):
 
         authors = list(formatted_names)
         if (len(authors) < 1):
-            return "[[[AUTHORS]]]"
+            return self.AUTHOR_UNKNOWN
 
         authors.sort()
 
@@ -55,12 +51,12 @@ class APAFormatter(CitationFormatter):
         if (date is not None):
             return date.strftime("%Y, %B %d")
         else:
-            return "[[[PUBLICATION DATE]]]"
+            return self.PUBDATE_UNKNOWN
 
     def _format_accessdate(self, date):
         if (date is not None):
             return date.strftime("%B %d, %Y")
         else:
-            return "[[[ACCESS DATE]]]"
+            return self.ACCESSDATE_UNKNOWN
 
 

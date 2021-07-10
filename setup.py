@@ -19,7 +19,7 @@ suggested = {
         }
 
 setup(name='python-autocite',
-    version='0.0.3',
+    version='0.0.4',
     description='Scrape webpages and generate citations',
     author='Nate Levesque',
     author_email='public@thenaterhood.com',
@@ -37,6 +37,7 @@ setup(name='python-autocite',
     },
     packages=[
         'python_autocite',
+        'python_autocite.formatter',
         'python_autocite.lib'
         ],
     )
