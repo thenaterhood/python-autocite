@@ -37,10 +37,12 @@ class IEEEFormatter(CitationFormatter):
         elif (len(authors) == 1):
             return "%s"
         elif (len(authors) == 2):
-            return "%s, & %s"
+            return "%s, and %s"
+        elif (len(authors) > 6):
+            return "%s et al."
         else:
             format_string = "%s, " * (len(authors)-1)
-            return format_string + "& %s"
+            return format_string + "and %s"
 
     def _assemble_authors(self, authors):
 
@@ -50,15 +52,18 @@ class IEEEFormatter(CitationFormatter):
             first_last = a.split()
             if (len(first_last) > 1):
                 # This pulls the last name and first initial
-                formatted_names.add(first_last[1] + ", " + first_last[0][0] + ".")
+                formatted_names.add(first_last[0][0] + ", " + first_last[1])
 
         authors = list(formatted_names)
         if (len(authors) < 1):
             return self.AUTHOR_UNKNOWN
 
         authors.sort()
-
-        formatted_authors = self._get_author_format(authors) % tuple(authors)
+        if (len(authors > 6)):
+            formatted_authors = self._get_author_format(authors) % authors[0]
+        else:
+            formatted_authors = self._get_author_format(authors) % tuple(authors)
+            
         return formatted_authors
 
     def _format_pubdate(self, date):
