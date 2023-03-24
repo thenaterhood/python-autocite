@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from python_autocite.lib.citation import Citation
 from python_autocite.formatter.apa import APAFormatter
 from python_autocite.formatter.bibtex import BibTexFormatter
+from python_autocite.formatter.ieee import IEEEFormatter
 from python_autocite.lib.datafinder import Datafinder
 from python_autocite.lib.capture import PageCapture
 import datetime
@@ -77,7 +78,7 @@ def main():
             '--format',
             required=False,
             default='apa',
-            help="Output citation format. 'bibtex' and 'apa' are supported. Defaults to 'apa'."
+            help="Output citation format. 'bibtex', 'apa', and 'ieee' are supported. Defaults to 'apa'."
             )
 
     args = parser.parse_args()
@@ -90,6 +91,8 @@ def main():
         formatter = APAFormatter()
     elif args.format.lower() == 'bibtex':
         formatter = BibTexFormatter()
+    elif args.format.lower() == 'ieee':
+        formatter = IEEEFormatter()
     else:
         print("Unsupported/unrecognized formatter. Run autocite --help to see supported formatters.")
         sys.exit(1)
