@@ -59,7 +59,7 @@ class IEEEFormatter(CitationFormatter):
             return self.AUTHOR_UNKNOWN
 
         authors.sort()
-        if (len(authors > 6)):
+        if (len(authors) > 6):
             formatted_authors = self._get_author_format(authors) % authors[0]
         else:
             formatted_authors = self._get_author_format(authors) % tuple(authors)
