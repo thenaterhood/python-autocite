@@ -19,7 +19,7 @@ def url_to_soup(url):
 
     try:
         page = requests.get(url)
-        return BeautifulSoup(page.text, 'html5lib')
+        return BeautifulSoup(page.text, 'html.parser')
     except Exception as e:
         print(e)
         return None
