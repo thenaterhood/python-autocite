@@ -115,7 +115,7 @@ def main():
             for line in f:
                 print(".", end="", file=sys.stderr)
                 sys.stderr.flush()
-                soup = url_to_soup(line)
+                soup = url_to_soup(line.strip())
                 if (soup is not None):
                     citation = soup_to_citation(line, soup)
                     citations.append(citation)
@@ -146,7 +146,7 @@ def main():
     formatted_citations.sort()
 
     if (args.to_text is not False):
-        with open(args.to_text, "w") as f:
+        with open(args.to_text, "w", encoding="utf-8") as f:
             for citation in formatted_citations:
                 f.write(citation)
                 f.write("\n\n")
